@@ -1,0 +1,27 @@
+@import './../../styles.scss';
+
+.startScreen{
+    background-color: #404040;
+    
+    width: 100%;
+    height: 100vh;
+    @include dFlex();
+    img{
+        @include size();
+    }
+}
+
+.startLableBox{
+    position: absolute;
+    height: 70%;
+    @include dFlex($ai:flex-end);
+    img{
+        width: 70vw;
+        height: auto;
+        cursor: pointer;
+        &:hover{
+            filter: brightness(1.25);
+        }
+    }
+    
+}

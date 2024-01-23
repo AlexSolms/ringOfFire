@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0;
+}
+
+@mixin dFlex($jc: center, $ai: center, $g: 0px) {
+    display: flex;
+    justify-content: $jc;
+    align-items: $ai;
+    gap: $g;
+}
+
+@mixin size($h: auto, $hm: 100vh, $w: 100%, $wm: fit-content) {
+    height: $h;
+    max-height: $hm;
+    width: $w;
+    max-width: $wm;
+}
