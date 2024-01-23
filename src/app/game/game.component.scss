@@ -34,6 +34,11 @@
     }
 }
 
+.playedCard{
+        right: 25px;
+        transform: scale(1) translate(200px, -200px) rotate(-10deg);
+}
+
 .pickCard{
     // transition: all 225ms ease-in-out;
     animation: pickCardAnimation 1s ease-in-out;
