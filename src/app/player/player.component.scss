@@ -1,0 +1,19 @@
+@import './../../styles.scss';
+
+
+.player{
+    width: 300px;
+    background-color: rgba(222, 184, 135, 0.616);
+    border-radius: 36px 0px 0px 36px;
+    @include dFlex($jc: unset, $g: 10px);
+    span{
+      font-size: 32px;  
+    }
+    
+    img{
+        @include size($w: 100px, $wm: none, $h: 100px, $hm: none);
+        object-fit: cover;
+        border-radius: 50%;
+    }
+}
+
