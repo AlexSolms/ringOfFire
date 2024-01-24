@@ -8,11 +8,13 @@ import {
   MatDialogClose,
 } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-dialog-add-player',
   standalone: true,
   imports: [
+    FormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatDialogTitle,
@@ -28,6 +30,6 @@ export class DialogAddPlayerComponent {
   name: string = '';
 
   onNoClick() { }
-  closeMe() { }
+  
 }
 
