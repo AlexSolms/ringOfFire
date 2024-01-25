@@ -11,9 +11,12 @@
     }
     
     img{
-        @include size($w: 100px, $wm: none, $h: 100px, $hm: none);
+        @include size($w: 70px, $wm: none, $h: 70px, $hm: none);
         object-fit: cover;
         border-radius: 50%;
     }
+}
+.player-active{
+  background-color: chocolate;
 }
 
