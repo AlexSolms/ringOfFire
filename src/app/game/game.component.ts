@@ -6,12 +6,13 @@ import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { GameInfoComponent } from '../game-info/game-info.component';
 
 
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [CommonModule, PlayerComponent, DialogAddPlayerComponent, MatIconModule, MatButtonModule],
+  imports: [CommonModule, PlayerComponent, DialogAddPlayerComponent, MatIconModule, MatButtonModule, GameInfoComponent],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss'
 })
@@ -25,7 +26,7 @@ export class GameComponent {
 
   constructor(public dialog: MatDialog) {
     this.game = new Game();
-    console.log(this.game.stack);
+    //console.log(this.game.stack);
 
   }
 
@@ -33,25 +34,26 @@ export class GameComponent {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent);
 
     dialogRef.afterClosed().subscribe((name: string) => {
-      console.log('The dialog was closed', name);
-      this.game.players.push(name);
-      
+      if (name) this.game.players.push(name); /* name.length > 0 */
     });
   }
 
-/**
- * this function pops and pushes cards from one array to another and set the playCardAnimationflag
- * DRAWNCARD is needed because Typescript need the check if it is undefiend
- */
+
+  /**
+   * this function pops and pushes cards from one array to another and set the playCardAnimationflag
+   * DRAWNCARD is needed because Typescript need the check if it is undefiend
+   */
   takeCard() {
-    // Prüfen, ob der Stack nicht leer ist, bevor Sie eine Karte nehmen
-    if (!this.pickCardAnimation) {
-      const DRAWNCARD: string | undefined = this.currentCard = this.game.stack.pop();
-      if (DRAWNCARD !== undefined) {
-        this.pickCardAnimation = true;
-        setTimeout(() => this.game.playedCards.push(DRAWNCARD), 1000);
+    if (this.game.players.length) { // hier muss noch ein Popup rein, das anzeigt, dass erst einmal ein Spieler vorhanden sein muss
+      if (!this.pickCardAnimation) {
+        const DRAWNCARD: string | undefined = this.currentCard = this.game.stack.pop();
+        if (DRAWNCARD !== undefined) {
+          this.pickCardAnimation = true;
+          setTimeout(() => this.game.playedCards.push(DRAWNCARD), 1000);
+        }
+        this.game.currentPlayer = (this.game.currentPlayer + 1) % this.game.players.length;
+        setTimeout(() => this.pickCardAnimation = false, 1500);
       }
-      setTimeout(() => this.pickCardAnimation = false, 1500);
     }
   }
 
