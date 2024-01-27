@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "ringoffire-e357a"
+  },
+  "targets": {
+    "ringoffire-e357a": {
+      "hosting": {
+        "ring-of-fire": [
+          "ringoffire-e357a"
+        ]
+      }
+    }
   }
 }
