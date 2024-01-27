@@ -7,12 +7,21 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { GameInfoComponent } from '../game-info/game-info.component';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [CommonModule, PlayerComponent, DialogAddPlayerComponent, MatIconModule, MatButtonModule, GameInfoComponent],
+  imports: [
+    CommonModule,
+    PlayerComponent,
+    DialogAddPlayerComponent,
+    MatIconModule,
+    MatButtonModule,
+    GameInfoComponent
+  ],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss'
 })
