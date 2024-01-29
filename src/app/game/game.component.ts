@@ -9,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { GameInfoComponent } from '../game-info/game-info.component';
 import { Firestore, collection, doc, onSnapshot, addDoc, updateDoc, docData } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+//import { Observable } from 'rxjs';
 
 
 
@@ -70,12 +70,12 @@ export class GameComponent {
 
   openGame() {
     this.game = new Game();
-    console.log('ISt es das Game:', this.game)
+    //console.log('ISt es das Game:', this.game)
     //this.addThings(this.game.toJson());
   }
 
   async updateGame(docId: string, colId: string = 'games', item: {}) { // ist das Array was ich ändern will. zum Beispiel die Player oder den Stapel zu ziehender Karten
-    console.log('gameId update: ', this.gameId);
+    //console.log('gameId update: ', this.gameId);
     await updateDoc(this.getSingleGamesRef(colId, docId), item).catch(
       (err) => { console.log(err); }
     );
@@ -84,14 +84,14 @@ export class GameComponent {
   async addThings(item: {}) { // ist das Array was ich adden will. zum Beispiel die Player oder den Stapel zu ziehender Karten
     let gameInfo = await addDoc(this.getGamesRef(), item);
     this.gameId = gameInfo.id; // returns the game id of added game
-    console.log('gameId aktuell: ', this.gameId);
+    //console.log('gameId aktuell: ', this.gameId);
   }
 
   subscribeNewGame(i: number) {
     this.unsubList = onSnapshot(this.getGamesRef(), (list) => {
       list.forEach(element => {
-        console.log(`Game update_${i}: `, element.data());
-        console.log(`Game id_${i}: `, element.id);
+        // console.log(`Game update_${i}: `, element.data());
+        // console.log(`Game id_${i}: `, element.id);
         i++;
       });
     });
@@ -117,8 +117,8 @@ export class GameComponent {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent);
     dialogRef.afterClosed().subscribe((name: string) => {
       if (name) this.game.players.push(name); /* name.length > 0 */
-      console.log('myGame:', this.game);
-      console.log('gameID: ', this.gameId);
+      //console.log('myGame:', this.game);
+      //console.log('gameID: ', this.gameId);
       this.updateGame(this.gameId, 'games', this.game.toJson());
     });
   }

@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { StartScreenComponent } from './start-screen/start-screen.component';
 import { Firestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+//import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
