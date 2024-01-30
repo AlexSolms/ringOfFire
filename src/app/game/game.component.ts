@@ -45,31 +45,35 @@ export class GameComponent {
   constructor(private route: ActivatedRoute, public dialog: MatDialog) {
     this.openGame();
     this.subscribeNewGame(0);
-   
-  }
-
-  async ngOnInit(){
-    console.log('game id: ', this.gameId);
     this.route.params.subscribe((params) => {
       params['id'];
       this.gameId = params['id'];
       let docRef = doc(this.firestore, 'games', this.gameId);
       docData(docRef).subscribe(game => {
         if (game) {
-          console.log('Was kommt hier raus? ',game);
-          
+          console.log('Was kommt hier raus? (game)',game);
+          console.log('Was kommt hier raus? (this.game)',this.game);
+          this.gameId = game['gameId'];
            this.game.gameId = game['gameId'];
            this.game.playedCards = game['playedCards'];
            this.game.players = game['players'];
            this.game.currentPlayer = game['currentPlayer'];
            this.game.stack = game['stack'];
            this.game.playedCards = game['playedCards'];
-           console.log('Was kommt hier raus? ',this.game);
+           console.log('Was kommt hier raus, danach? (this.game)',this.game);
         }
       }
       )
     });
- 
+    console.log('game id Constructor: ', this.gameId);
+  }
+
+  async ngOnInit(){
+    console.log('game id OnInit: ', this.gameId);
+   
+    //console.log('game id OnInit vor Übergabe: ', this.gameId);
+  //this.gameId = this.game.gameId;
+  console.log('game id OnInit Nach Übergabe: ', this.game);
   }
 
   openGame() {
