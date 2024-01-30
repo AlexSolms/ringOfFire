@@ -23,11 +23,11 @@ export class StartScreenComponent {
   async newGame(){
     this.game = new Game();
     await addDoc(this.getGamesRef(), this.game.toJson()).then(async (gameInfo) =>{
-      /* this.game.gameId = gameInfo.id;
+      this.game.gameId = gameInfo.id;
       let item: {} = this.game.toJson();
       await updateDoc(this.getSingleGamesRef('games', this.game.gameId), item).catch(
         (err) => { console.log(err); }
-      ); */
+      ); 
 
     this.router.navigateByUrl('/game/' + gameInfo.id)
   });

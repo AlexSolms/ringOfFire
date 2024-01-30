@@ -1,4 +1,4 @@
-import { Component, inject} from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Game } from '../../models/game';
 import { PlayerComponent } from '../player/player.component';
@@ -37,14 +37,19 @@ export class GameComponent {
 
   unsubList: any;
 
-  route: ActivatedRoute = inject(ActivatedRoute);
+  //route: ActivatedRoute = inject(ActivatedRoute);
   firestore: Firestore = inject(Firestore);
 
   gameId: string = '';
 
-  constructor(public dialog: MatDialog) {
+  constructor(private route: ActivatedRoute, public dialog: MatDialog) {
     this.openGame();
     this.subscribeNewGame(0);
+   
+  }
+
+  async ngOnInit(){
+    console.log('game id: ', this.gameId);
     this.route.params.subscribe((params) => {
       params['id'];
       this.gameId = params['id'];
@@ -64,8 +69,7 @@ export class GameComponent {
       }
       )
     });
-
-
+ 
   }
 
   openGame() {
