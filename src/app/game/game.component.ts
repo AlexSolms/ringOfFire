@@ -47,12 +47,13 @@ export class GameComponent {
     this.subscribeNewGame(0);
     this.route.params.subscribe((params) => {
       params['id'];
+      console.log('route', route);
       this.gameId = params['id'];
       let docRef = doc(this.firestore, 'games', this.gameId);
       docData(docRef).subscribe(game => {
         if (game) {
-          console.log('Was kommt hier raus? (game)',game);
-          console.log('Was kommt hier raus? (this.game)',this.game);
+          
+          
           this.gameId = game['gameId'];
            this.game.gameId = game['gameId'];
            this.game.playedCards = game['playedCards'];
@@ -65,7 +66,7 @@ export class GameComponent {
       }
       )
     });
-    console.log('game id Constructor: ', this.gameId);
+  
   }
 
   async ngOnInit(){
@@ -73,7 +74,7 @@ export class GameComponent {
    
     //console.log('game id OnInit vor Übergabe: ', this.gameId);
   //this.gameId = this.game.gameId;
-  console.log('game id OnInit Nach Übergabe: ', this.game);
+  
   }
 
   openGame() {
